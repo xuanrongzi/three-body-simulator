@@ -1,0 +1,25 @@
+#list of interfaces and api in these interfaces
+
+masspoint{
+
+
+
+}
+
+low_thropy_point{
+
+
+}
+
+main_masspoint{
+
+
+
+}
+
+sub_masspoint{
+
+
+
+
+}

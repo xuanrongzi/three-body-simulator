@@ -1,0 +1,2 @@
+#what's new for every version
+#start at 3/24/15 should be a long time since first runnable version ready
