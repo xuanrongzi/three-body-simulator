@@ -33,21 +33,35 @@ Moreover, I will make mobile app for this program. And most of all， Windows Ph
 at least.Proud to be 1%, Sign.
 
 #list of Features waiting to implement
-1: Data Type of Masses
-2: Physics laws
-3: three dimensional Space and data structure in Model unit
-4：UI
-5：Control Unit
-6: First runnable program (only Suns by now)
-7: Add planets
-8: Add Spacecrafts
-9: Adjust UI for feature 7 and 8
-10: First Phone app
-11: Adjustable camera
-12: data recording
-13: data projection and analysis
-14: database integration
-15: refactor code in python
+1: Data Type of Masses;
+
+2: Physics laws;
+
+3: three dimensional Space and data structure in Model unit;
+
+4：UI;
+
+5：Control Unit;
+
+6: First runnable program (only Suns by now);
+
+7: Add planets;
+
+8: Add Spacecrafts;
+
+9: Adjust UI for feature 7 and 8;
+
+10: First Phone app;
+
+11: Adjustable camera;
+
+12: data recording;
+
+13: data projection and analysis;
+
+14: database integration;
+
+15: refactor code in python;
 
 2015-3-24 20:45
 Xuanrongzi at Chapel Hill, NC
