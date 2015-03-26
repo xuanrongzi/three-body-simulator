@@ -1,4 +1,4 @@
-package library;
+package inter_face;
 
 public interface physics {
 
