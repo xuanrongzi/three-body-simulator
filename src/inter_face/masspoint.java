@@ -12,9 +12,11 @@ public interface masspoint {
   public String getName();
   public String getType();
   public double getDistance(masspoint m);
+  public double getRadious(masspoint m);
+  public double[] getVelocity(masspoint m);
   
   
-  
+  public void setRadious();
   public void setPosition();
   public void setName();
   public void setType();

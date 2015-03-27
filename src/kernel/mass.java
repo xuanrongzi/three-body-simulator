@@ -3,9 +3,13 @@ package kernel;
 import inter_face.masspoint;
 
 public class mass implements masspoint {
-	double mass=0;
-	double[] xyz=new double[3];
-	double[] force_vector=new double[3];
+	private double mass=0;
+	private double radious=0;
+ 
+	private double[] xyz=new double[3];
+	private double[] force_vector=new double[3];
+	private double[] velocity_vector=new double[3];
+	
 	@Override
 	public double getMass() {
 		// TODO Auto-generated method stub
@@ -80,6 +84,24 @@ public class mass implements masspoint {
 
 	@Override
 	public void setMass() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public double getRadious(masspoint m) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double[] getVelocity(masspoint m) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setRadious() {
 		// TODO Auto-generated method stub
 		
 	}
