@@ -1,110 +1,111 @@
 package kernel;
 
+import inter_face.Type;
 import inter_face.masspoint;
 
 public class mass implements masspoint {
 	private double mass=0;
 	private double radious=0;
- 
+	private String name;
+	private Type star_type;
 	private double[] xyz=new double[3];
 	private double[] force_vector=new double[3];
 	private double[] velocity_vector=new double[3];
 	
+	
+	public void masspoint(double mass, double rad, double[] position, String name, Type type){
+		this.mass=mass;
+		radious=rad;		
+		xyz=position;
+		this.name=name;
+		star_type=type;
+	}
+	
 	@Override
 	public double getMass() {
-		// TODO Auto-generated method stub
-		return 0;
+		return mass;
 	}
 
 	@Override
 	public double[] getPosition() {
-		// TODO Auto-generated method stub
-		return null;
+		return xyz;
 	}
 
 	@Override
 	public double[] getForce() {
-		// TODO Auto-generated method stub
-		return null;
+		return force_vector;
 	}
 
 	@Override
 	public double getX() {
-		// TODO Auto-generated method stub
-		return 0;
+		return xyz[0];
 	}
 
 	@Override
 	public double getY() {
-		// TODO Auto-generated method stub
-		return 0;
+		return xyz[1];
 	}
 
 	@Override
 	public double getZ() {
-		// TODO Auto-generated method stub
-		return 0;
+		return xyz[2];
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return name;
 	}
 
 	@Override
-	public String getType() {
-		// TODO Auto-generated method stub
-		return null;
+	public Type getType() {
+		return star_type;
 	}
 
 	@Override
 	public double getDistance(masspoint m) {
-		// TODO Auto-generated method stub
-		return 0;
+		double[] target=m.getPosition();
+		double[] delta=new double[3];
+		for(int i=0; i<3; i++){
+		delta[i]=xyz[i]-target[i];
+		}
+		return Math.sqrt(delta[0]*delta[0]+delta[1]*delta[1]+delta[2]*delta[2]);
 	}
 
 	@Override
-	public void setPosition() {
-		// TODO Auto-generated method stub
-		
+	public void setPosition(double[] posi) {
+		xyz=posi;		
 	}
 
 	@Override
-	public void setName() {
-		// TODO Auto-generated method stub
-		
+	public void setName(String name) {
+		this.name=name;
 	}
 
 	@Override
-	public void setType() {
-		// TODO Auto-generated method stub
-		
+	public void setType(Type type) {
+		star_type=type;
 	}
 
 	@Override
-	public void setMass() {
-		// TODO Auto-generated method stub
-		
+	public void setMass(double mass) {
+		this.mass=mass;
 	}
 
 	@Override
-	public double getRadious(masspoint m) {
-		// TODO Auto-generated method stub
-		return 0;
+	public double getRadious() {
+		return radious;
 	}
 
 	@Override
 	public double[] getVelocity(masspoint m) {
-		// TODO Auto-generated method stub
-		return null;
+		return velocity_vector;
 	}
 
 	@Override
-	public void setRadious() {
-		// TODO Auto-generated method stub
-		
+	public void setRadious(double rad) {
+		radious=rad;
 	}
+
 
 }
 

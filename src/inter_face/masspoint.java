@@ -10,16 +10,16 @@ public interface masspoint {
   public double getZ();
   public double[] getForce();
   public String getName();
-  public String getType();
+  public Type getType();
   public double getDistance(masspoint m);
-  public double getRadious(masspoint m);
+  public double getRadious();
   public double[] getVelocity(masspoint m);
   
   
-  public void setRadious();
-  public void setPosition();
-  public void setName();
-  public void setType();
-  public void setMass();
+  public void setRadious(double  rad);
+  public void setPosition(double[] posi);
+  public void setName(String name);
+  public void setType(Type type);
+  public void setMass(double mass);
   
 }
