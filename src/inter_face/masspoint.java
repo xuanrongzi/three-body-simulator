@@ -2,7 +2,7 @@ package inter_face;
 
 public interface masspoint {
 	
-  
+  public int getID();
   public double getMass();
   public double[] getPosition();
   public double getX();

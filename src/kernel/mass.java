@@ -7,18 +7,20 @@ public class mass implements masspoint {
 	private double mass=0;
 	private double radious=0;
 	private String name;
+	private int ID;
 	private Type star_type;
 	private double[] xyz=new double[3];
 	private double[] force_vector=new double[3];
 	private double[] velocity_vector=new double[3];
 	
 	
-	public void masspoint(double mass, double rad, double[] position, String name, Type type){
+	public void masspoint(double mass, double rad, double[] position, String name, Type type, int ID){
 		this.mass=mass;
 		radious=rad;		
 		xyz=position;
 		this.name=name;
 		star_type=type;
+		this.ID=ID;
 	}
 	
 	@Override
@@ -104,6 +106,11 @@ public class mass implements masspoint {
 	@Override
 	public void setRadious(double rad) {
 		radious=rad;
+	}
+
+	@Override
+	public int getID() {
+		return ID;
 	}
 
 
