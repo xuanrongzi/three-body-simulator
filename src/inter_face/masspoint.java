@@ -11,6 +11,7 @@ public interface masspoint {
   public double[] getForce();
   public String getName();
   public Type getType();
+  public int gettype();
   public double getDistance(masspoint m);
   public double getRadious();
   public double[] getVelocity(masspoint m);

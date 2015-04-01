@@ -3,6 +3,7 @@ package library;
 import org.junit.experimental.max.MaxCore;
 
 import exception.LimitReachedException;
+import exception.OutofRangeException;
 import inter_face.Type;
 import inter_face.Universe;
 import inter_face.masspoint;
@@ -26,14 +27,14 @@ public class univer_impl implements Universe{
 		for(int i=0; i<4; i++){
 			currentSize[i]=-1;
 		}
-		//0 is total size, 1 is sun size, 2 is planet size, 3 is spacecraft size
+		//0 is total size, 1 is sun size, 2 is planet size, 3 is space craft size
 		stars=new masspoint[12];
 		
 		//initially the program support 12 objects
 		stars_db=new int[16][4];
 		//the first column is the id of the star
 		//the second is the type of the star, 0=sun, 1=planet, 2=spaceship
-		//the third colunm is used to indicate it's th N'th star in the same categroy
+		//the third column is used to indicate it's the N'th star in the same category
 		//the fourth column is a mark of the star is still exist, 0=empty, 1= exist
 		max=new int[4];
 		max[0]=3;
@@ -52,7 +53,7 @@ public class univer_impl implements Universe{
 		}
 		currentSize[0]++;
 		stars[currentSize[0]]=m;
-		currentSize[0]++;
+		
 		if ((m.getType()==Type.solid_planet||m.getType()==Type.gas_planet)&&currentSize[2]<max[1]){
 			currentSize[2]++;
 			stars_db[currentSize[0]][0]=m.getID();
@@ -73,6 +74,32 @@ public class univer_impl implements Universe{
 			stars_db[currentSize[0]][3]=1;
 		}
 		
+	}
+	
+	@Override
+	public void removeMass(int id) throws OutofRangeException {
+		if (id<0||id>currentSize[0]){
+			throw new OutofRangeException("Remove id out of Range, check it again");
+		}
+		int t=stars[id].gettype();
+		if (t==0){
+			currentSize[1]--;
+		}else if (t==1){
+			currentSize[2]--;
+		}else{
+			currentSize[3]--;
+		}
+
+		stars[id]=null;
+		currentSize[0]--;
+		//to do the best, it should  delete everything in records and release memory
+		//but temporarily I prefer to mark it as deleted. that could be fine
+		for (int i=id; i<currentSize[0];i++){
+			stars[i]=stars[i+1];
+			stars_db[i]=stars_db[i+1];
+		}
+		stars[currentSize[0]+1]=null;
+		stars_db[currentSize[0]+1]=null;
 	}
 
 	@Override
@@ -125,5 +152,13 @@ public class univer_impl implements Universe{
 	public int getCurrentSize() {
 		return currentSize[0];
 	}
+
+	@Override
+	public void MoveCamMan(int[] adj) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 
 }

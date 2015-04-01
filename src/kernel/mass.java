@@ -9,6 +9,7 @@ public class mass implements masspoint {
 	private String name;
 	private int ID;
 	private Type star_type;
+	private int t;
 	private double[] xyz=new double[3];
 	private double[] force_vector=new double[3];
 	private double[] velocity_vector=new double[3];
@@ -21,6 +22,13 @@ public class mass implements masspoint {
 		this.name=name;
 		star_type=type;
 		this.ID=ID;
+		if (type==Type.solid_planet||type==Type.gas_planet){
+			t=1;
+		}else if(type==Type.spacecraft){
+			t=2;
+		}else{
+			t=0;
+		}
 	}
 	
 	@Override
@@ -111,6 +119,11 @@ public class mass implements masspoint {
 	@Override
 	public int getID() {
 		return ID;
+	}
+
+	@Override
+	public int gettype() {
+		return t;
 	}
 
 
