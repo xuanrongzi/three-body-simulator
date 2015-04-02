@@ -1,7 +1,9 @@
 package inter_face;
 
 public interface physics {
-	public double[] gravity(masspoint receiver, masspoint exerter);
+	public static double[] gravity(masspoint receiver, masspoint exerter) {
+		return null;
+	}
 	public double[] escapeSpeed(masspoint m);
 	public double[] relativegravity(masspoint receiver, masspoint exerter);
 	public double[] acceration(masspoint m, double[] force);

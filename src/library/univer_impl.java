@@ -1,17 +1,16 @@
 package library;
 
-import org.junit.experimental.max.MaxCore;
-
-import exception.LimitReachedException;
-import exception.OutofRangeException;
 import inter_face.Type;
 import inter_face.Universe;
 import inter_face.masspoint;
+import exception.LimitReachedException;
+import exception.OutofRangeException;
 
 public class univer_impl implements Universe{
 	private masspoint[] stars;
 	private int[][] stars_db;
 	private int[] currentSize;
+	private double[][] gravi;
 	private int num[];
 	private int max[];
 	private int[] univer;
@@ -24,6 +23,8 @@ public class univer_impl implements Universe{
 		univer=new int[3];
 		camera=new int[3];
 		currentSize=new int[4];
+		gravi=new double[12][4];
+		
 		for(int i=0; i<4; i++){
 			currentSize[i]=-1;
 		}
@@ -104,7 +105,17 @@ public class univer_impl implements Universe{
 
 	@Override
 	public void caculate_gravity() {
-		// TODO Auto-generated method stub
+		gravi=new double[64][4];
+		for(int i=0; i<currentSize[0]; i++){
+			
+			for(int j=0; j<currentSize[0];j++){
+				if(i!=j){
+					gravi[i]=phy_impl.gravity(stars[i], stars[j]);
+				}
+				
+			}
+			gravi[i][3]=Math.sqrt(gravi[i][0]*gravi[i][0]+gravi[i][1]*gravi[i][1]+gravi[i][2]*gravi[i][2]);
+		}
 		
 	}
 
