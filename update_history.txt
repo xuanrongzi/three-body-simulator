@@ -1,2 +1,3 @@
 #what's new for every version
 #start at 3/24/15 should be a long time since first runnable version ready
+by 2015/4/2 finished model about star(in general), physics, universe( part of)

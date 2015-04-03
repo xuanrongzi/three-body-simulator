@@ -39,6 +39,10 @@ at least.Proud to be 1%, Sign.
 
 3: three dimensional Space and data structure in Model unit;
 
+3.1 Time elapse and pause
+
+3.2 Graphing
+
 4：UI;
 
 5：Control Unit;
