@@ -11,5 +11,10 @@ public interface physics {
 	public double[] delta_v(masspoint m, double[] delta);
 	public boolean is_collide(masspoint m1, masspoint m2);
 	public masspoint collision(masspoint m1, masspoint m2);
+	static double mergeRadius(masspoint m1, masspoint m2) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
 
 }

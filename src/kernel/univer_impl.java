@@ -1,8 +1,9 @@
-package library;
+package kernel;
 
 import inter_face.Type;
 import inter_face.Universe;
 import inter_face.masspoint;
+import inter_face.physics;
 import exception.LimitReachedException;
 import exception.OutofRangeException;
 
@@ -16,10 +17,12 @@ public class univer_impl implements Universe{
 	private int[] univer;
 	private int[] camera;
 	private int speedoflight;
+	private double collision_coif;
 	
 	
 	public void Universe(){
 		speedoflight=300000000;
+		collision_coif=0.92;
 		univer=new int[3];
 		camera=new int[3];
 		currentSize=new int[4];
@@ -155,7 +158,27 @@ public class univer_impl implements Universe{
 
 	@Override
 	public void collision(masspoint m1, masspoint m2) {
-		// TODO Auto-generated method stub
+		// ignore the tide force for now
+		double dis=m1.getDistance(m2);
+		double r=phy_impl.mergeRadius(m1, m2);
+		//only kept the bigger masspoint
+		if(m1.getMass()>=m2.getMass()){
+			
+			double k=dis*m2.getMass()/(m1.getMass()+m2.getMass());
+			double[] delta=getdisplacememt(m1, m2);
+			double[] np=m1.getPosition();
+			for(int i=0; i<3; i++){
+				np[i]=delta[i]*k+np[i];
+			}
+			m1.setPosition(np);
+			m1.setMass(m1.getMass()+m2.getMass());
+			m1.setRadious(r);
+		}else{
+			
+		}
+		
+		
+		
 		
 	}
 
@@ -168,6 +191,37 @@ public class univer_impl implements Universe{
 	public void MoveCamMan(int[] adj) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void setCollision_coif(double coi) {
+		if (coi>=0&&coi<=1){
+		collision_coif=coi;
+		}else if(coi<=100){
+			collision_coif=coi/100;
+		}
+	}
+
+	@Override
+	public void update() {
+		// according to the list of mass points, update all the other data
+		
+	}
+
+	@Override
+	public boolean if_colide(masspoint m1, masspoint m2) {
+		double dis=m1.getDistance(m2);
+		double r=m1.getRadious()+m2.getRadious();
+		if (dis<=r*1.1){
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public double[] getdisplacememt(masspoint m1, masspoint m2) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

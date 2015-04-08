@@ -16,6 +16,8 @@ public interface Universe {
 	Integer getC();
 	void collision(masspoint m1, masspoint m2);
 	int getCurrentSize();
-	
-
+	void setCollision_coif(double coi);
+	void update();
+	boolean if_colide(masspoint m1, masspoint m2);
+	double[] getdisplacememt(masspoint m1, masspoint m2);
 }

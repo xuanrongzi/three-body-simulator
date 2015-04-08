@@ -1,4 +1,4 @@
-package library;
+package kernel;
 
 import inter_face.masspoint;
 import inter_face.physics;
@@ -64,6 +64,11 @@ public class phy_impl implements physics {
 	public masspoint collision(masspoint m1, masspoint m2) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public static double mergeRadius(masspoint m1, masspoint m2) {
+		// TODO Auto-generated method stub212
+		return 0;
 	}
 
 }
