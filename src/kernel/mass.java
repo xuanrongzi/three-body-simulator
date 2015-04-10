@@ -126,6 +126,11 @@ public class mass implements masspoint {
 		return t;
 	}
 
+	@Override
+	public void setID(int i) {
+		ID=i;
+	}
+
 
 }
 

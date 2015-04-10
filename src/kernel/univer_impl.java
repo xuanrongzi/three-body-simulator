@@ -173,8 +173,60 @@ public class univer_impl implements Universe{
 			m1.setPosition(np);
 			m1.setMass(m1.getMass()+m2.getMass());
 			m1.setRadious(r);
-		}else{
 			
+			int id=m2.getID();
+			int tp=stars_db[id][1];
+			
+			currentSize[0]--;
+			if(tp==0){
+				currentSize[1]--;
+			}else if(tp==1){
+				currentSize[2]--;
+			}else{currentSize[3]--;
+			
+			}
+			for(int i=id; i<=currentSize[0]; i++){
+				stars[i]=stars[i+1];
+				stars[i].setID(i);
+				//stars_db[i]=stars_db[i+1];
+				//stars_db[i][0]=i;
+				//if(stars_db[i][1]==tp){
+				//	stars_db[i][2]--;
+				//}
+			}
+			stars_db[currentSize[0]]=null;
+		}else{
+			double k=dis*m1.getMass()/(m1.getMass()+m2.getMass());
+			double[] delta=getdisplacememt(m1, m2);
+			double[] np=m2.getPosition();
+			for(int i=0; i<3; i++){
+				np[i]=delta[i]*k+np[i];
+			}
+			m1.setPosition(np);
+			m1.setMass(m1.getMass()+m2.getMass());
+			m1.setRadious(r);
+			
+			int id=m1.getID();
+			int tp=stars_db[id][1];
+			
+			currentSize[0]--;
+			if(tp==0){
+				currentSize[1]--;
+			}else if(tp==1){
+				currentSize[2]--;
+			}else{currentSize[3]--;
+			
+			}
+			for(int i=id; i<=currentSize[0]; i++){
+				stars[i]=stars[i+1];
+				stars[i].setID(i);
+				//stars_db[i]=stars_db[i+1];
+				//stars_db[i][0]=i;
+				//if(stars_db[i][1]==tp){
+				//	stars_db[i][2]--;
+				//}
+			}
+			stars_db[currentSize[0]]=null;
 		}
 		
 		

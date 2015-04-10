@@ -22,5 +22,6 @@ public interface masspoint {
   public void setName(String name);
   public void setType(Type type);
   public void setMass(double mass);
+  public void setID(int i);
   
 }
