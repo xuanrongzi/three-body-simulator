@@ -6,6 +6,7 @@ import inter_face.masspoint;
 import inter_face.physics;
 import exception.LimitReachedException;
 import exception.OutofRangeException;
+import exception.null_object;
 
 public class univer_impl implements Universe{
 	private masspoint[] stars;
@@ -24,9 +25,14 @@ public class univer_impl implements Universe{
 		speedoflight=300000000;
 		collision_coif=0.92;
 		univer=new int[3];
-		camera=new int[3];
+		camera=new int[4];
 		currentSize=new int[4];
 		gravi=new double[12][4];
+		camera[0]=200;
+		camera[1]=0;
+		camera[2]=0;
+		camera[3]=0;
+		//for camera, [0]means how big the scence should be,the rest is the center of the view
 		
 		for(int i=0; i<4; i++){
 			currentSize[i]=-1;
@@ -51,9 +57,16 @@ public class univer_impl implements Universe{
 	}
 	
 	@Override
-	public void addMass(masspoint m) throws LimitReachedException {
+	public void addMass(masspoint m) throws LimitReachedException, null_object {
+		
+		valid(m);
+		
+		try{
 		if (currentSize[0]>=max[3]){
 			throw new LimitReachedException("Total Number of Object reaches limits");
+		}
+		}catch(LimitReachedException e){
+			System.out.println("universe_addMass.the number of current mass object exceed maxium");
 		}
 		currentSize[0]++;
 		stars[currentSize[0]]=m;
@@ -157,7 +170,9 @@ public class univer_impl implements Universe{
 	}
 
 	@Override
-	public void collision(masspoint m1, masspoint m2) {
+	public void collision(masspoint m1, masspoint m2) throws null_object {
+		valid(m1);
+		valid(m2);
 		// ignore the tide force for now
 		double dis=m1.getDistance(m2);
 		double r=phy_impl.mergeRadius(m1, m2);
@@ -218,6 +233,8 @@ public class univer_impl implements Universe{
 			
 			}
 			for(int i=id; i<=currentSize[0]; i++){
+
+				
 				stars[i]=stars[i+1];
 				stars[i].setID(i);
 				//stars_db[i]=stars_db[i+1];
@@ -241,7 +258,15 @@ public class univer_impl implements Universe{
 
 	@Override
 	public void MoveCamMan(int[] adj) {
-		// TODO Auto-generated method stub
+		//input should be delta value
+		try{
+			camera[0]=camera[0]+adj[0];
+			camera[1]=camera[1]+adj[1];
+			camera[2]=camera[2]+adj[2];
+			camera[3]=camera[3]+adj[3];
+		}catch(ArrayIndexOutOfBoundsException e){
+			System.out.println("Universe.MoveCamMan Input list is currputed");
+		}
 		
 	}
 
@@ -261,7 +286,10 @@ public class univer_impl implements Universe{
 	}
 
 	@Override
-	public boolean if_colide(masspoint m1, masspoint m2) {
+	public boolean if_colide(masspoint m1, masspoint m2) throws null_object {
+		valid(m1);
+		valid(m2);
+		
 		double dis=m1.getDistance(m2);
 		double r=m1.getRadious()+m2.getRadious();
 		if (dis<=r*1.1){
@@ -271,9 +299,31 @@ public class univer_impl implements Universe{
 	}
 
 	@Override
-	public double[] getdisplacememt(masspoint m1, masspoint m2) {
-		// TODO Auto-generated method stub
-		return null;
+	public double[] getdisplacememt(masspoint m1, masspoint m2) throws null_object {
+		valid(m1);
+		valid(m2);
+		
+		double[] x1=m1.getPosition();
+		double[] x2=m2.getPosition();
+		double[] x3=new double[3];
+		x3[0]=Math.abs(x1[0]-x2[0]);
+		x3[0]=Math.abs(x1[1]-x2[1]);
+		x3[0]=Math.abs(x1[2]-x2[2]);
+		return x3;
+	}
+	
+	public void valid(masspoint m) throws null_object{
+		if (m==null){
+			throw new null_object("The object called is empty");
+		}
+		if(!(m instanceof masspoint)){
+				
+			throw new null_object("The object called is not ");
+
+		}
+			
+		
+		
 	}
 
 
