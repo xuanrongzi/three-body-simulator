@@ -1,5 +1,7 @@
 package kernel;
 
+
+
 import inter_face.Type;
 import inter_face.Universe;
 import inter_face.masspoint;
@@ -19,6 +21,8 @@ public class univer_impl implements Universe{
 	private int[] camera;
 	private int speedoflight;
 	private double collision_coif;
+	private tuple<String, Integer> flowchart;
+	
 	
 	
 	public void Universe(){
@@ -32,6 +36,7 @@ public class univer_impl implements Universe{
 		camera[1]=0;
 		camera[2]=0;
 		camera[3]=0;
+		
 		//for camera, [0]means how big the scence should be,the rest is the center of the view
 		
 		for(int i=0; i<4; i++){
@@ -54,6 +59,26 @@ public class univer_impl implements Universe{
 		//max is not eligible for editing during operation
 		//it might be increased if optimization and memory usage is acceptable
 		//but sizes of stars is expandable, to minimize memory usage at most case
+		
+		//here is a flow chart check list used to make sure everything is ok
+		//The Procedure of each moment is : in each step, 0 means undone, 1 means
+		
+		/*		1: Calculate gravity 
+		 * 		2: Calculate displacement according to gravity
+		 * 		3: get next position
+		 * 		4: if collision  0=undone; 1=without colon; 2=collide
+		 * 		5: if collision==2; this mean everything related has processed
+		 * 		6: if manually modified cam;
+		 * 		7: if 6 is not(0), the automatically set it
+		 * 		8: inspecting all before, updating, find if some object is out of bound, and find escaping speed, 
+		 */
+		init_flowchart();
+	}	
+	
+	private void init_flowchart(){
+		flowchart.add("Gravity", 0);
+		flowchart.add("Displacement", 0);
+		flowchart.add("Positon", 0);
 	}
 	
 	@Override
@@ -137,20 +162,22 @@ public class univer_impl implements Universe{
 
 	@Override
 	public void getNextPosition() {
-		// TODO Auto-generated method stub
+		//pior to this step, we should get the volecity vectors for this moment, and everything
+		//is down, all error elimited and call this method to move the objects and end the moment
 		
 	}
 
 	@Override
-	public void setCam(Integer[] cam) {
-		// TODO Auto-generated method stub
+	public void setCam(int[] cam) {
+		if(cam!=null&cam.length==4){
+			camera=cam;
+		}
 		
 	}
 
 	@Override
-	public Integer[] getCam() {
-		// TODO Auto-generated method stub
-		return null;
+	public int[] getCam() {
+		return camera;
 	}
 
 	@Override
@@ -160,12 +187,12 @@ public class univer_impl implements Universe{
 	}
 
 	@Override
-	public void setC(Integer v) {
+	public void setC(int v) {
 		speedoflight=v;
 	}
 
 	@Override
-	public Integer getC() {
+	public int getC() {
 		return speedoflight;
 	}
 

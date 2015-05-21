@@ -9,12 +9,12 @@ public interface Universe {
 	void removeMass(int id) throws OutofRangeException;
 	void caculate_gravity();
 	void getNextPosition();
-	void setCam(Integer[] cam);
-	Integer[] getCam();
+	void setCam(int[] cam);
+	int[] getCam();
 	void MoveCam();
 	void MoveCamMan(int[] adj);
-	void setC(Integer v);
-	Integer getC();
+	void setC(int v);
+	int getC();
 	void collision(masspoint m1, masspoint m2) throws null_object;
 	int getCurrentSize();
 	void setCollision_coif(double coi);
